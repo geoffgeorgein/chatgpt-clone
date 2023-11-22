@@ -81,16 +81,18 @@ function App() {
 
         <section className='main'>
 
-          <h1>G-GPT</h1>
+          <h1 className='title'>G-GPT</h1>
+          <div className='content'>
+
           {
-              prevchats.map((item)=>{
-                return <li>{item.content}</li>
+              prevchats.map((item,i)=>{
+                return <li key={i}>{item.content}</li>
               })
             }
 
-          <div>
+          <div className='inputContainer'>
             <input type='text' value={value} onChange={(e)=>setvalue(e.target.value)}/>
-            <button onClick={getMessages}>+</button>
+            <button onClick={getMessages}>ᐳ</button>
             {/* {
               message.map((data) =>{
                 return (<p>{data}</p>)
@@ -100,6 +102,8 @@ function App() {
 
           
           </div>
+          </div>
+          
           
         </section>
     </div>
