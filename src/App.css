@@ -9,6 +9,15 @@
   margin-top: 95px;
   padding: 40px 10px;
   width: 200px;
+  height: 100vh;
+  /* border-right: 1px solid lightgray; */
+  -webkit-box-shadow: 14px 3px 12px -4px rgba(207,207,207,0.43);
+-moz-box-shadow: 14px 3px 12px -4px rgba(207,207,207,0.43);
+box-shadow: 14px 3px 12px -4px rgba(207,207,207,0.43);
+}
+
+.side-bar> .history>li{
+  cursor: pointer;
 }
 
 .container {
@@ -37,18 +46,22 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-bottom: 30px;
+  margin: 0 10px;
 }
 
 .inputContainer{
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 20px;
 }
 
 .inputContainer > input{
   padding: 8px 20px;
-  width:60%;
-  margin-right: 20px;
+  
+  width: 80%;
+  margin-right: 10px;
   border: 1px solid lightgray;
   border-radius: 5px;
 }
