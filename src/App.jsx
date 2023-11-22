@@ -10,8 +10,9 @@ function App() {
   const[title,setTitle]=useState(null);
 
   useEffect(()=>{
-    console.log("mess",message)
+    // console.log("mess",message)
     console.log("prwv",prevchats)
+    console.log("titlw",title)
     
 
     if(!title && value && message){
@@ -36,6 +37,17 @@ function App() {
     }
   },[message,title])
 
+  const handleClick=(item)=>{
+    setTitle(item)
+  }
+
+  const createNewchat=()=>{
+
+    setTitle(null);
+    setmessage([])
+    setvalue(null)
+  }
+
   const getMessages=async()=>{
 
     const options={
@@ -58,13 +70,18 @@ function App() {
       const data= await response.json()
       console.log("data",data)
       const content=data?.choices[0]?.message;
-      console.log("cdata",content)
+      // console.log("cdata",content)
       setmessage(Object.entries(content))
+      setTitle(null)
     }
     catch(error){
       console.log(error)
     }
   }
+
+  const currentchat=prevchats.filter(item=>item.title==title);
+
+  const uniqueTitles=Array.from(new Set(prevchats.map(item=>item.title)))
  
 
   return (
@@ -72,10 +89,11 @@ function App() {
 
     <div className='container'>
       <section className='side-bar'>
-          <button>+ NewChat</button>
+          <button onClick={createNewchat}>+ NewChat</button>
 
           <ul className='history'>
-              <li>BLU</li>
+          {uniqueTitles.map((item,i)=><li key={i} onClick={()=>handleClick(item)}>{item}</li>)}
+              
           </ul>
         </section>
 
@@ -85,7 +103,7 @@ function App() {
           <div className='content'>
 
           {
-              prevchats.map((item,i)=>{
+            currentchat.map((item,i)=>{
                 return <li key={i}>{item.content}</li>
               })
             }

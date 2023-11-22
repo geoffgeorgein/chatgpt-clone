@@ -2,14 +2,20 @@
   max-width: 1280px;
   font-family: 'Poppins', sans-serif;
   text-align: center;
+  max-width: 1380px;
+  margin: 0 auto;
 }
 .side-bar{
+  margin-top: 95px;
+  padding: 40px 10px;
   width: 200px;
 }
 
 .container {
   display: flex;
   justify-content: space-between;
+  max-width: 1380px;
+  margin: 0 auto;
 }
 
 .main{
@@ -18,7 +24,7 @@
   
   align-items: center;
   height: 100vh;
-  width: 800px;
+  width: 600px;
   text-align: left;
 }
 
