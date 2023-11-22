@@ -4,12 +4,37 @@ import './App.css'
 
 function App() {
 
-  const[message,setmessage]=useState();
-  const[value,setvalue]=useState('');
+  const[message,setmessage]=useState([]);
+  const[value,setvalue]=useState(null);
+  const[prevchats,setprevchats]=useState([]);
+  const[title,setTitle]=useState(null);
 
   useEffect(()=>{
-    console.log(message)
-  },[message])
+    console.log("mess",message)
+    console.log("prwv",prevchats)
+    
+
+    if(!title && value && message){
+      setTitle(value)
+    }
+    if(title && value && message){
+      setprevchats(chats=>(
+        [...chats,
+          {
+            title:title,
+            role:"user",
+            content:value
+          },
+          {
+            title:title,
+            role:message[0][1],
+            content:message[1][1]
+
+          }
+        ]
+      ))
+    }
+  },[message,title])
 
   const getMessages=async()=>{
 
@@ -32,9 +57,9 @@ function App() {
       const response=await fetch('http://localhost:8000/completions',options)
       const data= await response.json()
       console.log("data",data)
-      const content=data?.choices[0]?.message?.content;
-      setmessage(
-        content)
+      const content=data?.choices[0]?.message;
+      console.log("cdata",content)
+      setmessage(Object.entries(content))
     }
     catch(error){
       console.log(error)
@@ -58,7 +83,9 @@ function App() {
 
           <h1>G-GPT</h1>
           {
-              message
+              prevchats.map((item)=>{
+                return <li>{item.content}</li>
+              })
             }
 
           <div>
